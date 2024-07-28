@@ -18,12 +18,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include QMK_KEYBOARD_H
 
-#define RGB_LIGHTS_COUNT_TOTAL  12
+#define MASTER_SIDE_RGB_START_INDEX 0
+#define SLAVE_SIDE_RGB_START_INDEX  27
+#define UNDERGLOW_RGB_LIGHTS_COUNT  6
 
-#define BASE_LAYER              0
-#define SYMBOL_LAYER            1
-#define NUMBER_NAV_LAYER        2
-#define FUNCTION_LAYER          3
+#define BASE_LAYER                  0
+#define SYMBOL_LAYER                1
+#define NUMBER_NAV_LAYER            2
+#define FUNCTION_LAYER              3
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE_LAYER] = LAYOUT_split_3x6_3(
@@ -77,19 +79,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 const rgblight_segment_t PROGMEM base_layer_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    { 0, RGB_LIGHTS_COUNT_PER_SIDE, HSV_PURPLE }
+    { MASTER_SIDE_RGB_START_INDEX, UNDERGLOW_RGB_LIGHTS_COUNT, HSV_PURPLE },
+    { SLAVE_SIDE_RGB_START_INDEX, UNDERGLOW_RGB_LIGHTS_COUNT, HSV_PURPLE }
 );
 
 const rgblight_segment_t PROGMEM symbols_layer_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    { 0, RGB_LIGHTS_COUNT_PER_SIDE, HSV_WHITE }
+    { MASTER_SIDE_RGB_START_INDEX, UNDERGLOW_RGB_LIGHTS_COUNT, HSV_WHITE },
+    { SLAVE_SIDE_RGB_START_INDEX, UNDERGLOW_RGB_LIGHTS_COUNT, HSV_WHITE }
 );
 
 const rgblight_segment_t PROGMEM numbers_nav_layer_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    { 0, RGB_LIGHTS_COUNT_PER_SIDE, HSV_BLUE }
+    { MASTER_SIDE_RGB_START_INDEX, UNDERGLOW_RGB_LIGHTS_COUNT, HSV_BLUE },
+    { SLAVE_SIDE_RGB_START_INDEX, UNDERGLOW_RGB_LIGHTS_COUNT, HSV_BLUE }
 );
 
 const rgblight_segment_t PROGMEM function_layer_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    { 0, RGB_LIGHTS_COUNT_PER_SIDE, HSV_RED }
+    { MASTER_SIDE_RGB_START_INDEX, UNDERGLOW_RGB_LIGHTS_COUNT, HSV_RED },
+    { SLAVE_SIDE_RGB_START_INDEX, UNDERGLOW_RGB_LIGHTS_COUNT, HSV_RED }
 );
 
 const rgblight_segment_t* const PROGMEM rgb_layers[] = RGBLIGHT_LAYERS_LIST(
